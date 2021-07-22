@@ -17,7 +17,7 @@ async def on_command_error(ctx, error):
     await utils.parse_error(ctx, error)
 
 def load_extensions(bot):
-    extensions = ['cogs.fun', 'cogs.about']
+    extensions = ['cogs.fun', 'cogs.about', 'cogs.modrinth']
     if __name__ == '__main__':
         for i in extensions:
             bot.load_extension(i)
