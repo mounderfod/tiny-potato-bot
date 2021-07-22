@@ -11,14 +11,12 @@ async def parse_error(ctx, error):
 
     if isinstance(error, commands.CommandNotFound):
         pass
-    elif isinstance(error, commands.MissingRequiredArgument):
-        await ctx.reply("Missing arguments! Make sure you've passed the correct ones.", mention_author=False)
-    elif isinstance(error, commands.MissingPermissions):
-        await ctx.reply("You do not have permission to do that!", mention_author=False)
-    elif isinstance(error, commands.BotMissingPermissions):
-        await ctx.reply("I don't have permission to do this! Make sure you've configured my role properly.", mention_author=False)
     else:
-        raise error
+        embed = discord.Embed(title="An error occurred!", color=0xc71a1a)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/798974923954978817.png?v=1")
+        embed.add_field(name=type(error).__name__, value=error, inline=False)
+        embed.set_footer(text="Tiny Potato Bot")
+        await ctx.send(embed=embed)
 
 class MyHelpCommand(commands.MinimalHelpCommand):
     async def send_pages(self):

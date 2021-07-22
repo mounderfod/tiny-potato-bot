@@ -32,11 +32,18 @@ class Fun(commands.Cog):
         await ctx.send("https://i.imgur.com/bOLCsd4.png")
 
     @commands.command(name="xkcd", brief="Gets XKCD comics.", help="Gets comics from https://xkcd.com, with the given number.")
-    async def xkcd(self, ctx, comic):
-        if int(comic) == 0:
-            await ctx.send("Invalid comic number!")
-        if int(comic) == 1 and int(comic) != "1":
-            await ctx.send("Invalid input!")
+    async def xkcd(self, ctx, comic=None):
+        if comic is None:
+            try:
+                response = requests.get('https://xkcd.com/info.0.json').json()
+                embed = discord.Embed(title=f"XKCD {response['num']}: {response['safe_title']}", colour=0xa37dca)
+                embed.set_image(url=response['img'])
+                embed.set_footer(text=response['alt'])
+                await ctx.send(embed=embed)
+            except:
+                raise commands.CommandInvokeError("Comic not found. The XKCD database may be down.")
+        elif int(comic) == 0:
+            raise commands.CommandInvokeError("Invalid comic number!")
         else:
             try:
                 response = requests.get(f'https://xkcd.com/{comic}/info.0.json').json()
@@ -45,7 +52,7 @@ class Fun(commands.Cog):
                 embed.set_footer(text=response['alt'])
                 await ctx.send(embed=embed)
             except:
-                await ctx.send("An error occurred. This is most likely because you entered a number for a comic that doesn't exist.")
+                raise commands.CommandInvokeError("Comic not found. The XKCD database may be down.")
 
 
 def setup(bot):
