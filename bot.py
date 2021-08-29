@@ -22,5 +22,6 @@ def load_extensions(bot):
         for i in extensions:
             bot.load_extension(i)
 
+bot.load_extension('jishaku')
 load_extensions(bot)
 bot.run(os.getenv("TOKEN"))
