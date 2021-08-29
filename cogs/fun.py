@@ -17,13 +17,13 @@ class Fun(commands.Cog):
     async def drama(self, ctx, source):
         if source == "fabric":
             response = urllib.request.urlopen("https://fabric-drama.herokuapp.com/txt").read().decode('utf-8')
-            await ctx.send(response)
+            await ctx.send("`" + response + "`")
         elif source == "ftb":
             response = urllib.request.urlopen("http://ftb-drama.herokuapp.com/txt").read().decode('utf-8')
-            await ctx.send(response)
+            await ctx.send("`" + response + "`")
         elif source == "forge":
             response = urllib.request.urlopen("https://mc-drama.herokuapp.com/raw").read().decode('utf-8')
-            await ctx.send(response)
+            await ctx.send("`" + response + "`")
         else:
             await ctx.send(f'Could not find drama from source "{source}". Valid sources: `ftb`, `fabric`, `forge`.')
 
