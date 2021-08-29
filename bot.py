@@ -18,7 +18,7 @@ async def on_command_error(ctx, error):
     
 @bot.event
 async def on_message(message):
-    if client.user.mentioned_in(message):
+    if bot.user.mentioned_in(message):
         ctx = await bot.get_context(message)
         ctx.reply("<irritatered:766468833564688395>")
     await bot.process_commands(message)
