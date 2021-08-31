@@ -2,6 +2,7 @@ import discord
 import requests
 from discord.ext import commands
 import urllib.request
+import random
 
 class Fun(commands.Cog):
     def __init__(self, bot):
@@ -10,25 +11,23 @@ class Fun(commands.Cog):
     @commands.command(name="drama", brief="Wait, it's all discord-meta? Always has been.", help="""
     Fetches drama from various sources, all based on asiekierka's original generator.
     Valid sources:
-    `ftb`: <http://ftb-drama.herokuapp.com>
     `fabric`: <http://fabric-drama.herokuapp.com>
     `forge`: <http://mc-drama.herokuapp.com>
+    If no source (or an invalid source) is provided then a random one is picked from between the two.
     """)
-    async def drama(self, ctx, source):
+    async def drama(self, ctx, source=None):
+        url = ""
         if source == "fabric":
-            response = urllib.request.urlopen("https://fabric-drama.herokuapp.com/txt").read().decode('utf-8')
-            await ctx.send(response)
-        elif source == "ftb":
-            try:
-                response = urllib.request.urlopen("http://ftb-drama.herokuapp.com/txt").read().decode('utf-8')
-                await ctx.send(response)
-            except HTTPError:
-                await ctx.send("This site is currently unavailable.")
+            url = "https://fabric-drama.herokuapp.com/txt"
         elif source == "forge":
-            response = urllib.request.urlopen("https://mc-drama.herokuapp.com/raw").read().decode('utf-8')
-            await ctx.send(response)
+            url = "https://mc-drama.herokuapp.com/raw"
         else:
-            await ctx.send(f'Could not find drama from source "{source}". Valid sources: `ftb`, `fabric`, `forge`.')
+            url = random.choice(["https://fabric-drama.herokuapp.com/txt", "https://mc-drama.herokuapp.com/raw"])
+        response = urllib.request.urlopen(url).read().decode('utf-8')
+        embed = discord.Embed(color=0xa37dca)
+        embed.add_field(name=f"{ctx.author.name} caused drama!", value=response, inline=False)
+        embed.set_footer(text="Tiny Potato Bot v1.0.0")
+        await ctx.send(embed=embed)
 
     @commands.command(name="mixinerror", brief="helpful Mixin errors when?", help="helpful Mixin errors when?")
     async def mixinerror(self, ctx):
