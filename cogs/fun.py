@@ -29,10 +29,6 @@ class Fun(commands.Cog):
         embed.set_footer(text="Tiny Potato Bot v1.0.0")
         await ctx.send(embed=embed)
 
-    @commands.command(name="mixinerror", brief="helpful Mixin errors when?", help="helpful Mixin errors when?")
-    async def mixinerror(self, ctx):
-        await ctx.send("https://i.imgur.com/bOLCsd4.png")
-
     @commands.command(name="xkcd", brief="Gets XKCD comics.", help="Gets comics from https://xkcd.com, with the given number.")
     async def xkcd(self, ctx, comic=None):
         if comic is None:
