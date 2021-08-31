@@ -20,7 +20,7 @@ async def on_command_error(ctx, error):
 async def on_message(message):
     if bot.user.mentioned_in(message):
         ctx = await bot.get_context(message)
-        ctx.reply("<irritatered:766468833564688395>")
+        await ctx.reply("<:irritater:882309845427036230>")
     await bot.process_commands(message)
 
 def load_extensions(client):
