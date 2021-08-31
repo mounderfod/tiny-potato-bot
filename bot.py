@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 import bot_utils
 
 load_dotenv()
-intents = nextcord.Intents(members=True, presences=True)
-bot = commands.Bot(command_prefix="t!", activity=nextcord.Activity(name="for commands", type=nextcord.ActivityType.watching), intents=intents)
+bot = commands.Bot(command_prefix="t!", activity=nextcord.Activity(name="for commands", type=nextcord.ActivityType.watching))
 bot.help_command = bot_utils.MyHelpCommand(command_attrs={'hidden':True})
 
 @bot.event
