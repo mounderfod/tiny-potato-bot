@@ -1,11 +1,11 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 import os
 from dotenv import load_dotenv
 import bot_utils
 
 load_dotenv()
-bot = commands.Bot(command_prefix="t!", activity=discord.Activity(name="for commands", type=discord.ActivityType.watching))
+bot = commands.Bot(command_prefix="t!", activity=nextcord.Activity(name="for commands", type=nextcord.ActivityType.watching))
 bot.help_command = bot_utils.MyHelpCommand(command_attrs={'hidden':True})
 
 @bot.event

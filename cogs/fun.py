@@ -1,6 +1,6 @@
-import discord
+import nextcord
 import requests
-from discord.ext import commands
+from nextcord.ext import commands
 import urllib.request
 import random
 
@@ -24,7 +24,7 @@ class Fun(commands.Cog):
         else:
             url = random.choice(["https://fabric-drama.herokuapp.com/txt", "https://mc-drama.herokuapp.com/raw"])
         response = urllib.request.urlopen(url).read().decode('utf-8')
-        embed = discord.Embed(color=0xa37dca)
+        embed = nextcord.Embed(color=0xa37dca)
         embed.add_field(name=f"{ctx.author.name} caused drama!", value=response, inline=False)
         embed.set_footer(text="Tiny Potato Bot v1.0.0")
         await ctx.send(embed=embed)
@@ -38,7 +38,7 @@ class Fun(commands.Cog):
         if comic is None:
             try:
                 response = requests.get('https://xkcd.com/info.0.json').json()
-                embed = discord.Embed(title=f"XKCD {response['num']}: {response['safe_title']}", colour=0xa37dca)
+                embed = nextcord.Embed(title=f"XKCD {response['num']}: {response['safe_title']}", colour=0xa37dca)
                 embed.set_image(url=response['img'])
                 embed.set_footer(text=response['alt'])
                 await ctx.send(embed=embed)
@@ -49,7 +49,7 @@ class Fun(commands.Cog):
         else:
             try:
                 response = requests.get(f'https://xkcd.com/{comic}/info.0.json').json()
-                embed = discord.Embed(title=f"XKCD {response['num']}: {response['safe_title']}", colour=0xa37dca)
+                embed = nextcord.Embed(title=f"XKCD {response['num']}: {response['safe_title']}", colour=0xa37dca)
                 embed.set_image(url=response['img'])
                 embed.set_footer(text=response['alt'])
                 await ctx.send(embed=embed)
