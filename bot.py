@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 import bot_utils
 import cogs.fun as fun
-import cogs.reddit as reddit
 import cogs.utils as utils
 
 intents = discord.Intents(messages=True, guilds=True, members=True, presences=True, reactions=True)
@@ -35,6 +34,5 @@ async def on_message(message):
 
 
 fun.setup(bot)
-reddit.setup(bot)
 utils.setup(bot)
 bot.run(os.getenv("TOKEN"))

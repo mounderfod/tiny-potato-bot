@@ -8,9 +8,9 @@ from discord.ext import commands
 
 load_dotenv()
 reddit = asyncpraw.Reddit(
-    client_id="2OTyJiFOZ1-lxXSO4-YZXw",
+    client_id="60jDYF0yBOGlP0QCDvhFew",
     client_secret=os.getenv("SECRET"),
-    user_agent="mounderfod.tpbot:v1.0.0 (by u/mounderfod)"
+    user_agent="craftvoltage.tpbot:v1.0.0 (by u/craftvoltage)"
 )
 
 
