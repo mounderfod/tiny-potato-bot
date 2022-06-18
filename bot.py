@@ -29,7 +29,8 @@ async def on_command_error(ctx, error):
 async def on_message(message):
     if bot.user.mentioned_in(message):
         ctx = await bot.get_context(message)
-        await ctx.reply("<:irritater:882309845427036230>")
+        if not ctx.author.bot:
+          await ctx.reply("no u")
     await bot.process_commands(message)
 
 
